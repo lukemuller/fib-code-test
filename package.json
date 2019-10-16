@@ -20,7 +20,6 @@
   "author": "Luke Muller",
   "license": "ISC",
   "devDependencies": {
-    "@types/cli-spinners": "^1.3.0",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.12",
     "@types/validator": "^10.11.3",

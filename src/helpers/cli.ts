@@ -120,6 +120,7 @@ export default class CLI {
     questionHandler = async (questionType: IQuestion) => {
         const response = await this.question.promptQuestion(questionType.question)
             .catch((error) => { console.log(error); return null; });
+        // Check input isn't one of our actions beforing int validation - halt, resume, quit
         const actionExecuted = await this.handleActions(response);
         if (validator.isInt(response)) {
             if (questionType.type === QUESTION_TYPE.question) {
@@ -129,11 +130,13 @@ export default class CLI {
                 this.fibTimer = new FibTimer(Number(response), this.eventListenerName);
                 this.fibTimer.resume();
             }
+            // Valid response received
             return true;
         } else {
             if (!actionExecuted) {
                 console.log(questionType.error);
             }
+             // Invalid response received
             return false;
         }
     };
